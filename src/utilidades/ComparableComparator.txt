@@ -1,0 +1,15 @@
+http://www.javacodegeeks.com/2013/03/difference-between-comparator-and-comparable-in-java.html
+Comparable normalmente lo implementa la clase en sí.
+Comparator suele implementarlo una clase que no tiene nada que ver con la clase que quieres comparar.
+
+La primera se suele usar cuando sólo hay una forma lógica de ordenar esa clase. Por ejemplo, para un Integer puedes inventar miles de formas de compararlo con otro (puedes por ejemplo decidir que un número par es mayor que un impar), pero la lógica es que la comparación sea ser mayor o menor como lo entendemos para los números. Por tanto sería adecuado que Integer implementara Comparable.
+
+Si tienes una clase Persona, puede haber muchas formas lógicas de decidir si una Persona es mayor que otra. Puede ser por orden alfabético, por edad, por categoría profesional dentro de la empresa, etc. Puesto que no hay un solo criterio de comparación evidente, no sería muy versátil que Persona implementara Comparable con un único criterio de comparación. Es mejor hacer uno o varios Comparator según qué criterio quieras usar. También se puede usar Comparator de manera anónima. 
+Ej: 
+Collections.sort(listOfCountries,new Comparator<Country>() {
+	               @Override
+	               public int compare(Country o1, Country o2) {
+	 
+	                   return o1.getCountryName().compareTo(o2.getCountryName());
+	               }
+	           });
