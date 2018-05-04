@@ -24,13 +24,52 @@ public class Maquina extends Jugador {
 		super(modo);
 	}
 
-	void anadirRespuesta(Respuesta respuesta) {
-		tablero.getJugadas().getLast().setRespuesta(respuesta);
-	}
-
 	@Override
 	Combinacion anadirCombinacion() {
-		return null;
+		Random rnd = new Random();
+		Combinacion combinacion = new Combinacion(modo.getNumCasillas());
+		Color color = null;
+		int posicionFicha, eleccion;
+
+		for (posicionFicha = 0; posicionFicha < modo.getNumCasillas(); posicionFicha++) {
+			eleccion = rnd.nextInt(modo.getNumColores()) + 1;
+
+			switch (eleccion) {
+			case 1:
+				color = Color.GRIS;
+				break;
+			case 2:
+				color = Color.NEGRO;
+				break;
+			case 3:
+				color = Color.AZUL;
+				break;
+			case 4:
+				color = Color.ROJO;
+				break;
+			case 5:
+				color = Color.AMARILLO;
+				break;
+			case 6:
+				color = Color.LIMA;
+				break;
+			case 7:
+				color = Color.TURQUESA;
+				break;
+			case 8:
+				color = Color.ROSA;
+				break;
+			case 9:
+				color = Color.CELESTE;
+				break;
+			case 10:
+				color = Color.MORADO;
+				break;
+			}
+
+			combinacion.anadirFicha(color, posicionFicha);
+		}
+		return combinacion;
 
 	}
 
@@ -99,10 +138,6 @@ public class Maquina extends Jugador {
 		tablero.setCombinacionOcultaPropia(combinacionOculta);
 
 		return combinacionOculta;
-	}
-
-	Jugada anadirJugada() {
-		return null;
 	}
 
 	Jugada anadirRespuesta(Combinacion combinacion) {

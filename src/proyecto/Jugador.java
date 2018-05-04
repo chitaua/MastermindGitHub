@@ -16,47 +16,44 @@ public abstract class Jugador {
 	}
 
 	int[] comprobarJugada(Combinacion combinacion) { // Comprobar ganador.
-		HashMap<Color,Integer> mapa = new HashMap<>();
+		HashMap<Integer, Ficha> mapaCombinacion = new HashMap<>();
+		HashMap<Integer, Ficha> mapaCombinacionOculta = new HashMap<>();
 		int arrayRespuestas[] = new int[3];
-		Color color = null;
-		int posicion = 0;
 		boolean salir = false;
 
 		for (int i = 0; i < modo.getNumCasillas(); i++) {
-			for (int j = 0; j < modo.getNumCasillas() && !salir; j++) {
-				if (combinacion.getFichas()[i].equals(tablero.getCombinacionOcultaPropia().getFichas()[j])) {
-					if (i == j) {
-						arrayRespuestas[0]++;
-						salir = true;
-						if (mapa.containsKey(combinacion.getFichas()[i].getColor())) {
-							arrayRespuestas[1]--;
-						}
-					} else {
-						if (!mapa.containsKey(combinacion.getFichas()[i].getColor())) {
-							arrayRespuestas[1]++;
-							mapa.put(combinacion.getFichas()[i].getColor(), i);
+			mapaCombinacion.put(i, combinacion.getFichas()[i]);
+			mapaCombinacionOculta.put(i, tablero.getCombinacionOcultaPropia().getFichas()[i]);
+		}
+		
+		for (int i = 0; i < modo.getNumCasillas(); i++) {
+			if (mapaCombinacion.get(i).equals(mapaCombinacionOculta.get(i))) {
+				arrayRespuestas[0]++;
+				mapaCombinacion.remove(i);
+				mapaCombinacionOculta.remove(i);
+			}
+		}
+		
+		if (!mapaCombinacion.isEmpty() && !mapaCombinacionOculta.isEmpty()) {
+			for (int i = 0; i < modo.getNumCasillas(); i++) {
+				if (mapaCombinacion.containsKey(i)) {
+					for (int j = 0; j < modo.getNumCasillas() && !salir; j++) {
+						if (mapaCombinacionOculta.containsKey(j)) {
+							if (mapaCombinacion.get(i).equals(mapaCombinacionOculta.get(j))) {
+								arrayRespuestas[1]++;
+								mapaCombinacion.remove(i);
+								mapaCombinacionOculta.remove(j);
+								salir = true;
+							} 
 						}
 					}
+					salir = false;
 				}
 			}
-			salir = false;
 		}
 
 		if (arrayRespuestas[0] + arrayRespuestas[1] < modo.getNumCasillas()) {
 			arrayRespuestas[2] = modo.getNumCasillas() - (arrayRespuestas[0] + arrayRespuestas[1]);
-		}
-
-		for (int i = 0; i < arrayRespuestas.length; i++) {
-			for (int j = 0; j < arrayRespuestas[i]; j++) {
-				if (i == 0) {
-					color = Color.ROJO;
-				} else if (i == 1) {
-					color = Color.GRIS;
-				} else {
-					color = Color.NEGRO;
-				}
-				posicion++;
-			}
 		}
 
 		return arrayRespuestas;
@@ -68,7 +65,7 @@ public abstract class Jugador {
 		int posicion = 0;
 
 		for (int i = 0; i < arrayRespuestas.length; i++) {
-			for (int j = 0; j < arrayRespuestas[i]; j++) {
+			while (arrayRespuestas[i] > 0) {
 				if (i == 0) {
 					color = Color.ROJO;
 				} else if (i == 1) {
@@ -76,11 +73,12 @@ public abstract class Jugador {
 				} else {
 					color = Color.NEGRO;
 				}
+				arrayRespuestas[i]--;
 				respuesta.anadirFicha(color, posicion);
 				posicion++;
 			}
 		}
-		
+
 		return respuesta;
 	}
 

@@ -28,40 +28,48 @@ public class Partida {
 		int[] array;
 
 		if (modo == Modo.FACIL) {
-			if (jugador1 instanceof Usuario) { // Si en el modo facil el jugador 1 es el usuario, la maquina hace la
-												// combOculta.
+			if (jugador1 instanceof Usuario) { // Si en el modo facil el jugador 1 es el usuario, la maquina hace la combOculta.
 				jugador1.getTablero().setCombinacionOcultaContrario(jugador2.anadirCombinacionOculta());
-				System.out.println("La máquina ha elegido una combinación oculta. Ahora te toca a ti acertarla.\n");
+				System.out.println("La máquina ha elegido una combinación oculta. Ahora te toca a ti adivinarla.\n");
 				for (intento = 1; intento <= modo.getNumIntentos() && !salir; intento++) {
 					System.out.printf("INTENTO Nº %d. ", intento);
-					System.out.printf("Elige el color de las %d fichas:%n", modo.getNumCasillas());
-					if (modo != Modo.DIFICIL) {
-						System.out.printf("1.%s   2.%s   3.%s   4.%s%n", GRIS, NEGRO, AZUL, ROJO);
-						System.out.printf("5.%s   6.%s   7.%s   8.%s%n", AMARILLO, LIMA, TURQUESA, ROSA);
-					} else {
-						System.out.printf("1.%s   2.%s   3.%s   4.%s   5.%s%n", GRIS, NEGRO, AZUL, ROJO, AMARILLO);
-						System.out.printf("6.%s   7.%s   8.%s   9.%s  10.%s%n", LIMA, TURQUESA, ROSA, CELESTE, MORADO);
-					}
 					jugador1.getTablero().anadirJugada(jugador2.anadirRespuesta(jugador1.anadirCombinacion()));
 					array = jugador2.comprobarJugada(jugador1.getTablero().getJugadas().getLast().getCombinacion());
-					if (array[0] == 4) {
-						salir = true;
-						System.out.println("¡HAS GANADO!");
-					} else {
-						salir = false;
-						intentosConsumidos++;
-					}
-					jugador1.getTablero().dibujar();
-					if (intentosConsumidos == modo.getNumIntentos()) {
-						System.out.println("¡HAS PERDIDO!");
-					}
+					salir = comprobarJugada(array, intento);
 				}
 			} else {
-
+				System.out.println("Elige una combinación oculta para que la máquina la intente adivinar.");
+				System.out.printf("Elige los colores de las %d fichas: %n", modo.getNumCasillas());
+				jugador1.getTablero().setCombinacionOcultaContrario(jugador2.anadirCombinacionOculta());
+				for (intento = 1; intento <= modo.getNumIntentos() && !salir; intento++) {
+					System.out.printf("INTENTO Nº %d%n", intento);
+					System.out.printf("Combinación oculta: ");
+					jugador1.getTablero().getCombinacionOcultaContrario().dibujar();
+					jugador1.getTablero().anadirJugada(jugador2.anadirRespuesta(jugador1.anadirCombinacion()));
+					array = jugador2.comprobarJugada(jugador1.getTablero().getJugadas().getLast().getCombinacion());
+					salir = comprobarJugada(array, intento);
+				}
 			}
 		}
 	}
 	
+	boolean comprobarJugada(int[] array, int intentosConsumidos) {
+		boolean salir = false;
+		
+		jugador1.getTablero().dibujar();
+		
+		if (array[0] == 4) {
+			salir = true;
+			System.out.println("¡HAS GANADO!");
+		} else {
+			salir = false;
+			if (intentosConsumidos == modo.getNumIntentos()) {
+				System.out.println("¡HAS PERDIDO!");
+			}
+		}
+		
+		return salir;
+	}
 
 	
 }

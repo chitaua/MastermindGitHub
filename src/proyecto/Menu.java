@@ -10,7 +10,7 @@ public class Menu {
 		boolean jugadorFacil;
 		Partida partida = null;
 		Jugador jugador1, jugador2;
-		System.out.println("BIENVENIDO A MASTERMIND");
+		System.out.println("BIENVENIDO A MASTERMIND\n");
 		System.out.println("Selecciona el modo de juego: ");
 		System.out.println("\t1.- Fácil");
 		System.out.println("\t2.- Medio");

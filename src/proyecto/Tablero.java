@@ -38,11 +38,16 @@ public class Tablero implements Dibujable{
 	
 	public void dibujar() {		
 		for (int i = 0; i < jugadas.size(); i++) {
+			if (i<10) {
+				System.out.printf("Intento %d:   ", i+1);
+			} else {
+				System.out.printf("Intento %d:  ", i+1);
+			}
 			jugadas.get(i).dibujar();
 		}
-		System.out.println();
+		System.out.print("Combinación oculta: ");
 		combinacionOcultaContrario.dibujar();
-		System.out.println();
+		System.out.printf("%n-------------------------%n");
 	}
 	
 }
