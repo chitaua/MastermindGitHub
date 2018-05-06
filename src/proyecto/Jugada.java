@@ -25,7 +25,6 @@ public class Jugada implements Dibujable{
 		combinacion.dibujar();
 		System.out.print("| ");
 		respuesta.dibujar();
-		System.out.println();
 	}
 	
 }

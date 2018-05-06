@@ -154,7 +154,7 @@ public class Usuario extends Jugador {
 		combinacion.dibujar();
 		
 		do {
-			System.out.println("\n¿Cuántos aciertos rojos hay?:");
+			System.out.println("\n¿Cuántos aciertos rojos ha tenido el rival?(Coincidencia en color y posición):");
 			aciertos = Teclado.leerEntre(0, 4, Incluido.TODOS, Tipo.INT);
 			if (aciertos != respuestas[0]) {
 				System.out.println("Te has equivocado al poner los aciertos rojos.");
@@ -164,7 +164,7 @@ public class Usuario extends Jugador {
 		} while (!correcto);
 
 		do {
-			System.out.println("¿Cuántos aciertos blancos hay?:");
+			System.out.println("¿Cuántos aciertos blancos ha tenido el rival?(Coincidencia en color):");
 			aciertos = Teclado.leerEntre(0, 4, Incluido.TODOS, Tipo.INT);
 			if (aciertos != respuestas[1]) {
 				System.out.println("Te has equivocado al poner los aciertos blancos.");

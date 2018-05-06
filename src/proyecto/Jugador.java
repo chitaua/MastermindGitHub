@@ -15,7 +15,7 @@ public abstract class Jugador {
 		return tablero;
 	}
 
-	int[] comprobarJugada(Combinacion combinacion) { // Comprobar ganador.
+	int[] comprobarJugada(Combinacion combinacion) { 
 		HashMap<Integer, Ficha> mapaCombinacion = new HashMap<>();
 		HashMap<Integer, Ficha> mapaCombinacionOculta = new HashMap<>();
 		int arrayRespuestas[] = new int[3];

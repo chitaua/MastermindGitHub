@@ -1,22 +1,6 @@
 package proyecto;
 
-import static utilidades.Constantes.AMARILLO;
-import static utilidades.Constantes.AZUL;
-import static utilidades.Constantes.CELESTE;
-import static utilidades.Constantes.GRIS;
-import static utilidades.Constantes.LIMA;
-import static utilidades.Constantes.MORADO;
-import static utilidades.Constantes.NEGRO;
-import static utilidades.Constantes.ROJO;
-import static utilidades.Constantes.ROSA;
-import static utilidades.Constantes.TURQUESA;
-
-import java.util.Arrays;
 import java.util.Random;
-
-import utilidades.Teclado;
-import utilidades.Teclado.Incluido;
-import utilidades.Teclado.Tipo;
 
 public class Maquina extends Jugador {
 
@@ -81,21 +65,25 @@ public class Maquina extends Jugador {
 		int posicionFicha, eleccionAleatoria, contador = 0;
 		int elecciones[] = new int[modo.getNumCasillas()];
 		boolean salir = false;
-		
+
 		for (posicionFicha = 0; posicionFicha < modo.getNumCasillas(); posicionFicha++) {
-			do {
-				salir = false;
+			if (modo == Modo.DIFICIL) {
 				eleccionAleatoria = rnd.nextInt(modo.getNumColores()) + 1;
-				for (int i = 0; i < elecciones.length && !salir; i++) {
-					if (eleccionAleatoria != elecciones[i]) 
-						contador++;	
-					else {
-						contador = 0;
-						salir = true;
+			} else {
+				do {
+					salir = false;
+					eleccionAleatoria = rnd.nextInt(modo.getNumColores()) + 1;
+					for (int i = 0; i < elecciones.length && !salir; i++) {
+						if (eleccionAleatoria != elecciones[i])
+							contador++;
+						else {
+							contador = 0;
+							salir = true;
+						}
 					}
-				}
-			} while (contador != modo.getNumCasillas());
-			
+				} while (contador != modo.getNumCasillas());
+			}
+
 			contador = 0;
 			elecciones[posicionFicha] = eleccionAleatoria;
 
@@ -141,14 +129,9 @@ public class Maquina extends Jugador {
 	}
 
 	Jugada anadirRespuesta(Combinacion combinacion) {
-		Respuesta respuesta = new Respuesta(modo.getNumCasillas());
-		int [] respuestas = comprobarJugada(combinacion);
-		int aciertos;
-		boolean correcto = true;
+		int[] respuestas = comprobarJugada(combinacion);
 
 		return new Jugada(combinacion, crearRespuesta(respuestas), modo);
 	}
-
-	
 
 }

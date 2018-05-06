@@ -29,8 +29,8 @@ public class Menu {
 			break;
 		case 2:
 			System.out.println("Ha elegido el modo medio.");
-			jugador1 = new Maquina(Modo.MEDIO);
-			jugador2 = new Usuario(Modo.MEDIO);
+			jugador1 = new Usuario(Modo.MEDIO);
+			jugador2 = new Maquina(Modo.MEDIO);
 			partida = new Partida(jugador1, jugador2, Modo.MEDIO);
 			break;
 		case 3:

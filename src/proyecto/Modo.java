@@ -1,7 +1,7 @@
 package proyecto;
 
 public enum Modo {
-	FACIL(4, 8, false, 10), MEDIO(5, 8, false, 15), DIFICIL(8, 10 ,true , -1);
+	FACIL(4, 8, false, 3), MEDIO(5, 8, false, 3), DIFICIL(8, 10 ,true , -1);
 	
 	private int numCasillas;
 	private int numColores;
