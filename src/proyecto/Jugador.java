@@ -15,6 +15,8 @@ public abstract class Jugador {
 		return tablero;
 	}
 
+	// Se utiliza para comprobar que la respuesta esté bien hecha, y devuelve un array de tamaño 3
+	// que va a contener los aciertos rojos, blancos y negros en las distintas posiciones.
 	int[] comprobarJugada(Combinacion combinacion) { 
 		HashMap<Integer, Ficha> mapaCombinacion = new HashMap<>();
 		HashMap<Integer, Ficha> mapaCombinacionOculta = new HashMap<>();
@@ -59,6 +61,8 @@ public abstract class Jugador {
 		return arrayRespuestas;
 	}
 
+	// Necesita método de arriba como parámetro para funcionar.
+	// El array que se le pasa sirve para crear una Respuesta que se va a añadir en la Jugada.
 	Respuesta crearRespuesta(int[] arrayRespuestas) {
 		Respuesta respuesta = new Respuesta(modo.getNumCasillas());
 		Color color = null;

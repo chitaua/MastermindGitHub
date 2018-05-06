@@ -6,6 +6,7 @@ import utilidades.Teclado.Tipo;
 
 public class Menu {
 
+	// Con este método se le pide al usuario elegir una dificultad, y se crean los jugadores.
 	public Partida configurarPartida() {
 		boolean jugadorFacil;
 		Partida partida = null;

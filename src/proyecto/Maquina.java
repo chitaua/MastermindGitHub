@@ -8,7 +8,7 @@ public class Maquina extends Jugador {
 		super(modo);
 	}
 
-	@Override
+	// Devuelve una combinación que se va añadir a la Jugada.
 	Combinacion anadirCombinacion() {
 		Random rnd = new Random();
 		Combinacion combinacion = new Combinacion(modo.getNumCasillas());
@@ -57,7 +57,8 @@ public class Maquina extends Jugador {
 
 	}
 
-	@Override
+	// Con este método se añade una combinación oculta que el contrario tiene que adivinar.
+	// Si el modo es difícil, permitirá la repetición de colores.
 	Combinacion anadirCombinacionOculta() {
 		Random rnd = new Random();
 		Combinacion combinacionOculta = new Combinacion(modo.getNumCasillas());
@@ -127,7 +128,8 @@ public class Maquina extends Jugador {
 
 		return combinacionOculta;
 	}
-
+	
+	// Recibe una combinación que se va utilizar para añadirla como Respuesta a una Jugada.
 	Jugada anadirRespuesta(Combinacion combinacion) {
 		int[] respuestas = comprobarJugada(combinacion);
 

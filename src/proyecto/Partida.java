@@ -11,6 +11,7 @@ public class Partida {
 		this.modo = modo;
 	}
 
+	// Con este método se comienza ya a jugar y dependiendo del modo se hace una partida diferente.
 	void comenzarPartida() {
 		int intento;
 		boolean salir = false, ganaJ1, ganaJ2;
@@ -86,6 +87,7 @@ public class Partida {
 		}
 	}
 
+	// Devuelve un boolean, que básicamente es para el modo fácil, pero también lo vamos a utilizar en el resto de modos.
 	private boolean comprobarJugada(Jugador jugador, int[] array, int intentosConsumidos) {
 		boolean esGanador = false;
 		String ganador = "HA GANADO", perdedor = "HA PERDIDO";
@@ -125,6 +127,8 @@ public class Partida {
 		return esGanador;
 	}
 
+	// Sirve únicamente para los modos medio y difícil, y necesita el método anterior para su funcionamiento.
+	// Si alguno de los jugadores ha ganado, devuelve true.
 	private boolean comprobarGanador(boolean esGanador1, boolean esGanador2, int intentos) {
 		boolean salir = false;
 		String cadena1, cadena2, ganador = "";

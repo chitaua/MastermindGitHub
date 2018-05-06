@@ -12,6 +12,7 @@ public class Respuesta implements Dibujable {
 		return respuestas;
 	}
 
+	// Va añadiendo fichas a la respuesta, para tener una respuesta que esté formada de fichas.
 	void anadirFicha(Color color, int posicion) {
 		respuestas[posicion] = new Ficha(color);
 	}

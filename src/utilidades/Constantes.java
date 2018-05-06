@@ -7,6 +7,9 @@ public final class Constantes {
 	private Constantes() {
 	}
 
+	// En esta clase se utilizan los colores de Colores.java para crear un cuadrado de un color.
+	// Sirve para no tener que usar más el RESET en el proyecto.
+	
 	// FIGURAS.
 	public static final char CUADRADO = 9632;
 	public static final char CIRCULO = 11044;

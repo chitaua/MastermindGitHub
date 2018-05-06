@@ -3,6 +3,7 @@ package proyecto;
 import java.util.Arrays;
 
 public class Combinacion implements Dibujable {
+	
 	private Ficha fichas[];
 
 	Combinacion(int numFichas) {
@@ -13,6 +14,7 @@ public class Combinacion implements Dibujable {
 		return fichas;
 	}
 
+	// Va añadiendo fichas a su array, para tener una combinación que esté formada de fichas.
 	void anadirFicha(Color color, int posicion) {
 		fichas[posicion] = new Ficha(color);
 	}

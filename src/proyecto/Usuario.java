@@ -11,9 +11,6 @@ import static utilidades.Constantes.ROJO;
 import static utilidades.Constantes.ROSA;
 import static utilidades.Constantes.TURQUESA;
 
-import java.util.HashMap;
-import java.util.Random;
-
 import utilidades.Teclado;
 import utilidades.Teclado.Incluido;
 import utilidades.Teclado.Tipo;
@@ -24,6 +21,7 @@ public class Usuario extends Jugador {
 		super(modo);
 	}
 
+	// Devuelve una combinación que se va añadir a la Jugada.
 	Combinacion anadirCombinacion() {
 		Combinacion combinacion = new Combinacion(modo.getNumCasillas());
 		Color color = null;
@@ -79,10 +77,11 @@ public class Usuario extends Jugador {
 		return combinacion;
 	}
 
+	// Con este método se añade una combinación oculta que el contrario tiene que adivinar.
 	Combinacion anadirCombinacionOculta() {
 		Combinacion combinacionOculta = new Combinacion(modo.getNumCasillas());
 		Color color = null;
-		int posicionFicha, eleccion, totalColores = modo.getNumColores(), contador = 0;
+		int posicionFicha, eleccion, totalColores = modo.getNumColores();
 		int elecciones[] = new int[modo.getNumCasillas()], coloresElegidos[] = new int[totalColores];
 		boolean salir = false;
 
@@ -144,6 +143,7 @@ public class Usuario extends Jugador {
 		return combinacionOculta;
 	}
 
+	// Recibe una combinación que se va utilizar para añadirla como Respuesta a una Jugada.
 	Jugada anadirRespuesta(Combinacion combinacion) {
 		// Respuesta respuesta = new Respuesta(modo.getNumCasillas());
 		int[] respuestas = comprobarJugada(combinacion);

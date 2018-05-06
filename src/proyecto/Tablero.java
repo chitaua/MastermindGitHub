@@ -32,13 +32,13 @@ public class Tablero implements Dibujable {
 		this.combinacionOcultaContrario = combinacionOcultaContrario;
 	}
 
+	// Añade la jugada pasada por parámetro al último lugar del LinkedList <Jugada>.
 	public void anadirJugada(Jugada jugada) {
 		this.jugadas.addLast(jugada);
 	}
 
 	public void dibujar() {
 		System.out.print("\n\t    TABLERO ");
-		// combinacionOcultaContrario.dibujar();
 		System.out.printf("%n-------------------------------------%n");
 		for (int i = 0; i < jugadas.size(); i++) {
 			if (i < 10) {
@@ -51,9 +51,11 @@ public class Tablero implements Dibujable {
 		}
 
 	}
-
+	
+	// Este dibujar es exclusivo para medio y dificil, para mostrar dos tableros en horizontal.
 	public void dibujarMedioDificil(Jugador jugador1, Jugador jugador2) {
 		String cadena1, cadena2;
+		
 		if (modo == Modo.MEDIO) {
 			cadena1 = "USUARIO  ";
 			cadena2 = "MÁQUINA";
