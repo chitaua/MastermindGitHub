@@ -62,15 +62,30 @@ public class Tablero implements Dibujable {
 			cadena2 = "MÁQUINA 2";
 		}
 
-		System.out.printf("\n\t    TABLERO - %s \t\t\t\t    TABLERO - %s", cadena1, cadena2);
-		System.out.printf("%n---------------------------------------------\t\t");
-		System.out.printf("---------------------------------------------%n");
+		System.out.printf("\n\t    TABLERO - %s \t\t\t\t\t    TABLERO - %s", cadena1, cadena2);
+		System.out.printf("%n------------------------------------------------\t\t");
+		System.out.printf("------------------------------------------------%n");
 
 		for (int j = 0; j < jugadas.size(); j++) {
-			System.out.printf("Jugada %d:   ", j + 1);
-			jugador1.getTablero().getJugadas().get(j).dibujar();
-			System.out.printf("\t\t\tJugada %d:   ", j + 1);
-			jugador2.getTablero().getJugadas().get(j).dibujar();
+			if (j < 9) {
+				System.out.printf("Jugada %d:   ", j + 1);
+				jugador1.getTablero().getJugadas().get(j).dibujar();
+				if (modo == Modo.MEDIO) {
+					System.out.printf("\t\t\t\tJugada %d:   ", j + 1);
+				} else {
+					System.out.printf("\t\tJugada %d:   ", j + 1);
+				}
+				jugador2.getTablero().getJugadas().get(j).dibujar();
+			} else {
+				System.out.printf("Jugada %d:  ", j + 1);
+				jugador1.getTablero().getJugadas().get(j).dibujar();
+				if (modo == Modo.MEDIO) {
+					System.out.printf("\t\t\t\tJugada %d:  ", j + 1);
+				} else {
+					System.out.printf("\t\tJugada %d:  ", j + 1);
+				}
+				jugador2.getTablero().getJugadas().get(j).dibujar();
+			}
 			System.out.println();
 		}
 

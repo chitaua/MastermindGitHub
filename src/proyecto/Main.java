@@ -13,6 +13,5 @@ public class Main {
 			reiniciar = Teclado.leerBoolean("¿Desea jugar de nuevo?", "Sí", "No");
 		} while (reiniciar);
 	}
-
 	
 }
